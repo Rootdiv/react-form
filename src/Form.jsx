@@ -11,6 +11,7 @@ export const Form = () => {
   const onSubmit = data => {
     console.log('data: ', data);
   };
+  console.log('errors: ', errors);
 
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -25,11 +26,11 @@ export const Form = () => {
           {...register('email', {
             required: {
               value: true,
-              message: 'Ошибка в этом поле',
+              message: 'Введите email',
             },
             pattern: {
               value: /^.+@.+\..+$/,
-              message: 'Неверный email',
+              message: 'Неверный формат email',
             },
           })}
           aria-invalid={!!errors.email}
@@ -47,16 +48,21 @@ export const Form = () => {
           {...register('password', {
             required: {
               value: true,
-              message: 'Ошибка в этом поле',
+              message: 'Введите пароль',
             },
             pattern: {
               value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/,
-              message: 'Неверный password',
+              message: 'Неверный формат пароля',
             },
           })}
           aria-invalid={!!errors.password}
         />
-        {errors.password && <p className={style.error}>{errors.password.message}</p>}
+        {errors.password && (
+          <>
+            <p className={style.error}>{errors.password.message}</p>
+            <p className={style.message}>Нужно использовать прописные и заглавные буквы, цифры и спецсимволы.</p>
+          </>
+        )}
       </div>
       <div className={style.wrapCheckbox}>
         <input type="checkbox" id="save" className={style.checkbox} {...register('save')} />

@@ -35,6 +35,13 @@
   color: #ff6347;
 }
 
+.message {
+  width: 350px;
+  height: 25px;
+  font-size: 18px;
+  color: #ff6347;
+}
+
 .wrapCheckbox {
   display: flex;
   align-items: center;
